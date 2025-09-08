@@ -1,35 +1,36 @@
-/* ========== charity: water baseline (CSS v8) ========== */
+/* =========================================================
+   charity: water — Yellow-forward theme (CSS v10)
+   - Stronger brand yellow throughout
+   - Cleaner shadows + spacing
+   - Better accessibility (focus styles, contrast)
+========================================================= */
 
-/* Brand tokens */
+/* ---------- Brand tokens ---------- */
 :root{
-  /* Primary */
-  --cw-yellow: #FFC907;     /* brand yellow */
-  --cw-blue:   #2E9DF7;     /* keep for small accents if needed */
+  /* Primaries */
+  --cw-yellow:      #FFC907;   /* brand yellow */
+  --cw-yellow-dark: #E0B800;   /* hover/darker yellow */
+  --cw-blue:        #2E9DF7;   /* accent blue (limited use) */
 
-  /* Yellows for backgrounds */
-  --bg-page:   #FFF9E6;     /* pale page background */
-  --cw-light:  #FFF3BF;     /* soft yellow for sections/cards */
-
-  /* Buttons (yellow focus) */
-  --cw-green:       #FFC907;  /* repurpose as yellow so old .btn-green stays yellow */
-  --cw-green-dark:  #E0B800;  /* darker yellow for hover */
+  /* Backgrounds */
+  --bg-page:  #FFF9E6;  /* pale page background */
+  --bg-card:  #FFFFFF;  /* default section/card bg */
+  --cw-light: #FFF3BF;  /* soft yellow for sections */
 
   /* Text */
-  --text:   #2A2000;       /* deep brown for legibility on yellow */
-  --muted:  #5A4A00;       /* slightly muted text on yellow */
-}
-.site-header{
-  display: flex;
-  align-items: center;
-  height: 60px;
-  padding: 0 16px;
-  background: #fff;
-  border-bottom: 4px solid var(--cw-yellow); /* thicker yellow accent */
+  --text:   #2A2000;    /* deep brown for readability on yellow */
+  --muted:  #5A4A00;
+
+  /* Layout + effects */
+  --radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 24px rgba(0,0,0,.18);
 }
 
-/* Base */
+/* ---------- Base ---------- */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+html { scroll-behavior: smooth; }
 body{
   margin: 0;
   background: var(--bg-page);
@@ -38,23 +39,28 @@ body{
   line-height: 1.55;
 }
 
-/* Section card look */
-section{
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(46,157,247,.07);
-  margin: 24px 10px;
-  padding: 24px 16px;
+/* Helpful accessibility defaults */
+:focus-visible{
+  outline: 3px solid var(--cw-yellow);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+::selection{
+  background: var(--cw-yellow);
+  color: #111;
 }
 
-/* Header bar with logo */
+/* ---------- Site header (top-left logo) ---------- */
 .site-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   height: 60px;
   padding: 0 16px;
   background: #fff;
-  border-bottom: 1px solid #e8eef5;
+  border-bottom: 4px solid var(--cw-yellow); /* strong brand accent */
 }
 .brand img{
   height: 36px;
@@ -62,31 +68,49 @@ section{
   display: block;
 }
 
-/* Buttons */
+/* ---------- Section card look ---------- */
+section{
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin: 24px 10px;
+  padding: 24px 16px;
+}
+
+/* ---------- Buttons (yellow by default) ---------- */
 .btn{
   display: inline-block;
-  background: var(--cw-blue);
-  color: #fff;
+  background: var(--cw-yellow);
+  color: #111;                      /* better contrast on yellow */
   text-decoration: none;
   padding: 14px 28px;
   border-radius: 8px;
   font-weight: 800;
   letter-spacing: .2px;
   transition: background .2s, transform .15s, box-shadow .2s;
-  box-shadow: 0 4px 12px rgba(46,157,247,.25);
+  box-shadow: var(--shadow-sm);
+  border: 0;
+  cursor: pointer;
 }
 .btn:hover{
-  background: #1d8fe5;
+  background: var(--cw-yellow-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+  box-shadow: var(--shadow-lg);
 }
-.btn-green{
-  background: var(--cw-green);
-  box-shadow: 0 4px 12px rgba(79,203,83,.25);
-}
-.btn-green:hover{ background: var(--cw-green-dark); }
+.btn:active{ transform: translateY(0); }
 
-/* HERO (image + overlay) */
+/* Optional blue button if you ever need it */
+.btn-blue{
+  background: var(--cw-blue);
+  color: #fff;
+}
+.btn-blue:hover{ background: #1d8fe5; }
+
+/* Backward-compatibility: any old .btn-green now equals yellow */
+.btn-green{ background: var(--cw-yellow); }
+.btn-green:hover{ background: var(--cw-yellow-dark); }
+
+/* ---------- HERO (image + warm yellow overlay) ---------- */
 .hero{
   position: relative;
   min-height: 62vh;
@@ -111,7 +135,10 @@ section{
   background: linear-gradient(rgba(255,201,7,.55), rgba(255,201,7,.35));
   z-index: -1;
 }
-.hero-inner{ padding: 60px 20px; max-width: 900px; }
+.hero-inner{
+  padding: 60px 20px;
+  max-width: 900px;
+}
 .hero h1{
   margin: 0 0 12px;
   font-size: clamp(28px, 6vw, 48px);
@@ -124,13 +151,7 @@ section{
   text-shadow: 0 1px 4px rgba(0,0,0,.15);
 }
 
-/* STORY */
-.story{
-  background-color: var(--cw-light);
-  color: var(--text);
-  text-align: center;
-  padding: 30px 20px;
-}
+/* ---------- STORY (soft yellow panel) ---------- */
 .story{
   background-color: var(--cw-light);  /* soft yellow */
   color: var(--text);
@@ -138,31 +159,57 @@ section{
   padding: 30px 20px;
 }
 .story h2{
-  color: #5A4A00;                     /* dark warm heading on yellow */
+  color: #5A4A00;                     /* dark warm heading */
   margin: 0 0 16px;
   font-weight: 800;
 }
+.impact-content{ /* stacked on mobile; row on larger screens below */ }
+.impact-image{
+  width: 100%;
+  max-width: 340px;
+  border-radius: 10px;
+  margin: 0 auto 16px;
+  box-shadow: var(--shadow-sm);
+}
 .impact-text p{ margin-top: 0; color: var(--muted); }
 
-
-/* DONATION CTA */
+/* ---------- DONATION CTA (deeper yellow band) ---------- */
 .call-to-action{
-  background-color:
-  #FFD84D; 
+  background-color: #FFD84D;  /* slightly deeper than --cw-yellow */
+  color: #2A2000;
   text-align: center;
   padding: 30px 20px;
+  box-shadow: var(--shadow-sm);
 }
-.call-to-action h2{ margin-top: 0; font-weight: 800; }
+.call-to-action h2{
+  margin-top: 0;
+  font-weight: 800;
+}
 
-/* Responsive */
+/* ---------- Footer ---------- */
+.footer{
+  text-align: center;
+  color: #6b5a10;
+  padding: 18px 10px 30px;
+  background: transparent; /* keep the page’s pale yellow visible */
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce){
+  * { transition: none !important; }
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 600px){
   .hero{ min-height: 54vh; }
   .hero-inner{ padding: 36px 12px; }
   .hero h1{ font-size: 1.8rem; }
   .hero p{  font-size: 1rem; }
+
   .story, .call-to-action{ padding: 18px 12px; }
   .impact-image{ width: 90%; max-width: 260px; }
 }
+
 @media (min-width: 601px){
   .impact-content{
     display: flex;
