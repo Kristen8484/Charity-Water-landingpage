@@ -66,23 +66,33 @@ section{
 .btn-green:hover{ background: var(--cw-green-dark); }
 
 /* ---------- HERO (full-width background image) ---------- */
+/* HERO as an <img> with overlay (simpler image paths) */
 .hero{
   position: relative;
-  min-height: 62vh;       /* height of hero; adjust if you want bigger */
+  min-height: 62vh;
   display: grid;
   place-items: center;
   text-align: center;
   color: #fff;
+  overflow: hidden;                 /* hide overflow edges on small screens */
+}
 
-  /* Use your uploaded image for reliability */
-  background-image:
-    linear-gradient(rgba(46,157,247,.45), rgba(46,157,247,.45)), /* blue overlay for readability */
-    url("img/cw_hero.jpg");  /* <-- upload your hero image as /img/cw_hero.jpg */
+/* The hero photo fills the area */
+.hero-img{
+  position: absolute;
+  inset: 0;                         /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* cover the space without distortion */
+  z-index: -2;                      /* sit behind the content */
+}
 
-  /* If you must hot-link a temporary URL, replace the line above with your external URL. */
-  background-size: cover;        /* fill the area */
-  background-position: center;   /* keep important part centered */
-  background-repeat: no-repeat;
+/* Readability overlay using your brand blue */
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(46,157,247,.45); /* same as --cw-blue with 45% opacity */
+  z-index: -1;
 }
 
 .hero-inner{
