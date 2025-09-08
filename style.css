@@ -177,3 +177,17 @@ section{
   }
   .impact-image{ width: 320px; }
 }
+/* === Header with top-left logo === */
+.site-header{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 16px;
+  background: #ffffff;                 /* simple, clean bar */
+  border-bottom: 1px solid #e8eef5;    /* subtle divider */
+}
+.brand img{
+  height: 34px;                        /* adjust as you like */
+  width: auto;
+  display: block;
+}
