@@ -147,8 +147,8 @@ section{
 
 /* DONATION CTA */
 .call-to-action{
-  background-color: var(--cw-yellow);
-  color: #222;
+  background-color:
+  #FFD84D; 
   text-align: center;
   padding: 30px 20px;
 }
