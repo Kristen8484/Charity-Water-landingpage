@@ -1,0 +1,171 @@
+/* =========================================================
+   charity: water Landing Page — Beginner-Friendly CSS
+   Brand palette + readable overlay + responsive layout
+   Fonts: Avenir / Proxima Nova fallbacks (no installs needed)
+========================================================= */
+
+/* ---------- Brand tokens (edit freely) ---------- */
+:root{
+  /* Primary colors */
+  --cw-yellow: #FFC907;
+  --cw-blue:   #2E9DF7;
+
+  /* Secondary colors */
+  --cw-light:  #8BD1CB;
+  --cw-green:  #4FCB53;
+  --cw-green-dark: #159A48;
+
+  /* Neutrals */
+  --bg-page:   #f4f8fb;  /* soft light blue overall page bg */
+  --text:      #222;     /* main text */
+  --muted:     #445;     /* slightly muted text */
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: Avenir, "Proxima Nova", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.55;
+}
+
+/* Generic section card style */
+section{
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(46,157,247,.07);
+  margin: 24px 10px;
+  padding: 24px 16px;
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display: inline-block;
+  background: var(--cw-blue);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 4px 12px rgba(46,157,247,.25);
+}
+.btn:hover{
+  background: #1d8fe5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+}
+.btn:active{ transform: translateY(0); }
+
+.btn-green{
+  background: var(--cw-green);
+  box-shadow: 0 4px 12px rgba(79,203,83,.25);
+}
+.btn-green:hover{ background: var(--cw-green-dark); }
+
+/* ---------- HERO (full-width background image) ---------- */
+.hero{
+  position: relative;
+  min-height: 62vh;       /* height of hero; adjust if you want bigger */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+
+  /* Use your uploaded image for reliability */
+  background-image:
+    linear-gradient(rgba(46,157,247,.45), rgba(46,157,247,.45)), /* blue overlay for readability */
+    url("img/cw_hero.jpg");  /* <-- upload your hero image as /img/cw_hero.jpg */
+
+  /* If you must hot-link a temporary URL, replace the line above with your external URL. */
+  background-size: cover;        /* fill the area */
+  background-position: center;   /* keep important part centered */
+  background-repeat: no-repeat;
+}
+
+.hero-inner{
+  padding: 60px 20px;
+  max-width: 900px;
+}
+.hero h1{
+  margin: 0 0 12px;
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.hero p{
+  margin: 0 0 20px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  text-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* ---------- STORY ---------- */
+.story{
+  background-color: var(--cw-light);
+  color: var(--text);
+  text-align: center;
+  padding: 30px 20px;
+}
+.story h2{
+  color: var(--cw-blue);
+  margin: 0 0 16px;
+  font-weight: 800;
+}
+.impact-content{ /* default: stacked on mobile; row on larger screens below */ }
+.impact-image{
+  width: 100%;
+  max-width: 340px;
+  border-radius: 10px;
+  margin: 0 auto 16px;
+  box-shadow: 0 2px 8px rgba(46,157,247,.10);
+}
+.impact-text p{ margin-top: 0; color: var(--muted); }
+
+/* ---------- DONATION CTA ---------- */
+.call-to-action{
+  background-color: var(--cw-yellow);
+  color: #222;
+  text-align: center;
+  padding: 30px 20px;
+}
+.call-to-action h2{ margin-top: 0; font-weight: 800; }
+
+/* ---------- Responsive Media Queries ----------
+   These rules adjust the layout for different screen sizes.
+   1) <= 600px: phones
+   2) >= 601px: tablets/desktops
+----------------------------------------------- */
+
+/* Phones (small screens): keep things stacked and readable */
+@media (max-width: 600px){
+  .hero{ min-height: 54vh; }
+  .hero-inner{ padding: 36px 12px; }
+  .hero h1{ font-size: 1.8rem; }
+  .hero p{  font-size: 1rem; }
+
+  .story, .call-to-action{ padding: 18px 12px; }
+
+  .impact-image{
+    width: 90%;
+    max-width: 260px;
+  }
+}
+
+/* Tablets & Desktops: place story image and text side-by-side */
+@media (min-width: 601px){
+  .impact-content{
+    display: flex;              /* side-by-side */
+    align-items: center;        /* vertical align */
+    justify-content: center;    /* center the group */
+    gap: 28px;                  /* space between image & text */
+    text-align: left;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .impact-image{ width: 320px; }
+}
