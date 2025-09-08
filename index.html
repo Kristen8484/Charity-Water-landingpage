@@ -5,43 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>charity: water — Make a Splash</title>
   <meta name="description" content="Join our mission to provide safe drinking water to those in need. Every drop counts and every action matters." />
-  <link rel="stylesheet" href="style.css?v=6">   <!-- cache-bust: note ?v=6 -->
+  <!-- cache-bust with ?v=8 so you see the newest CSS -->
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
-  <!-- Site header with top-left logo -->
+  <!-- Simple top bar with logo (top-left) -->
   <header class="site-header">
     <a class="brand" href="#">
       <img src="img/logo.png" alt="charity: water logo">
     </a>
-</header>
-<header class="hero">
-  <!-- The image is now a normal <img> so the path is easy to test -->
-  <img class="hero-img" src="img/cw_hero.jpg" alt="Smiling child with clean drinking water">
-  <!-- Blue overlay for readability -->
-  <div class="hero-overlay"></div>
+  </header>
 
-  <div class="hero-inner">
-    <h1>Make a Splash</h1>
-    <p>Join our mission to provide safe drinking water to those in need. Every drop counts and every action matters.</p>
-    <a class="btn" href="#donate">Get Involved</a>
-  </div>
-</header>
+  <!-- HERO with image + blue overlay -->
+  <header class="hero">
+    <img class="hero-img" src="img/cw_hero.jpg" alt="Smiling child with clean drinking water">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <h1>Make a Splash</h1>
+      <p>Join our mission to provide safe drinking water to those in need. Every drop counts and every action matters.</p>
+      <a class="btn" href="#donate">Get Involved</a>
+    </div>
+  </header>
 
-  <!-- STORY: image + text about impact -->
+  <!-- STORY -->
   <main>
     <section class="story" id="story">
       <h2>Clean Water Changes Everything</h2>
       <div class="impact-content">
-        <!-- Replace with your uploaded story image -->
-        <img class="impact-image" src="img/cw_story.jpg" alt="Smiling child washing hands at a community water tap">
+        <img class="impact-image" src="img/cw_story.jpg" alt="Child washing hands at a community water tap">
         <div class="impact-text">
-          <p>
-            When communities gain access to clean and safe drinking water, time is returned to families, health improves,
-            and students get back to class. Your support funds proven solutions—like wells and piped systems—with transparent reporting.
-          </p>
-          <p>
-            Together, we can bring clean water to more people—one project at a time.
-          </p>
+          <p>When communities gain access to clean water, time is returned to families, health improves, and students get back to class. Your support funds proven solutions—like wells and piped systems—with transparent reporting.</p>
+          <p>Together, we can bring clean water to more people—one project at a time.</p>
         </div>
       </div>
     </section>
@@ -55,7 +49,7 @@
   </main>
 
   <footer class="footer">
-    <small>This is a student-built landing page for learning purposes. Replace placeholder copy and images with official assets before publishing widely.</small>
+    <small>Student-built demo. Replace placeholder copy and images with official assets before publishing widely.</small>
   </footer>
 </body>
 </html>
