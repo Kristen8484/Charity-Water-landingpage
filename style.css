@@ -1,25 +1,18 @@
-/* =========================================================
-   charity: water Landing Page — Beginner-Friendly CSS
-   Brand palette + readable overlay + responsive layout
-   Fonts: Avenir / Proxima Nova fallbacks (no installs needed)
-========================================================= */
+/* ========== charity: water baseline (CSS v8) ========== */
 
-/* ---------- Brand tokens (edit freely) ---------- */
+/* Brand tokens */
 :root{
-  /* Primary colors */
   --cw-yellow: #FFC907;
-
-
-  /* Secondary colors */
+  --cw-blue:   #2E9DF7;
   --cw-light:  #8BD1CB;
+  --cw-green-dark: #159A48;
 
-  /* Neutrals */
-  --bg-page:   #f4f8fb;  /* soft light yellow overall page bg */
-  --text:      #222;     /* main text */
-  --muted:     #445;     /* slightly muted text */
+  --bg-page:   #f4f8fb;  /* page background */
+  --text:      #222;
+  --muted:     #445;
 }
 
-/* ---------- Base ---------- */
+/* Base */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body{
@@ -30,7 +23,7 @@ body{
   line-height: 1.55;
 }
 
-/* Generic section card style */
+/* Section card look */
 section{
   background: #fff;
   border-radius: 12px;
@@ -39,7 +32,22 @@ section{
   padding: 24px 16px;
 }
 
-/* ---------- Buttons ---------- */
+/* Header bar with logo */
+.site-header{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid #e8eef5;
+}
+.brand img{
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+/* Buttons */
 .btn{
   display: inline-block;
   background: var(--cw-blue);
@@ -57,16 +65,13 @@ section{
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0,0,0,.18);
 }
-.btn:active{ transform: translateY(0); }
-
 .btn-green{
   background: var(--cw-green);
   box-shadow: 0 4px 12px rgba(79,203,83,.25);
 }
 .btn-green:hover{ background: var(--cw-green-dark); }
 
-/* ---------- HERO (full-width background image) ---------- */
-/* HERO as an <img> with overlay (simpler image paths) */
+/* HERO (image + overlay) */
 .hero{
   position: relative;
   min-height: 62vh;
@@ -74,36 +79,27 @@ section{
   place-items: center;
   text-align: center;
   color: #fff;
-  overflow: hidden;                 /* hide overflow edges on small screens */
+  overflow: hidden;
 }
-
-/* The hero photo fills the area */
 .hero-img{
   position: absolute;
-  inset: 0;                         /* top:0; right:0; bottom:0; left:0 */
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;                /* cover the space without distortion */
-  z-index: -2;                      /* sit behind the content */
+  object-fit: cover;
+  z-index: -2;
 }
-
-/* Readability overlay using your brand blue */
 .hero-overlay{
   position: absolute;
   inset: 0;
-  background: rgba(46,157,247,.45); /* same as --cw-blue with 45% opacity */
+  background: rgba(46,157,247,.45); /* blue readability overlay */
   z-index: -1;
 }
-
-.hero-inner{
-  padding: 60px 20px;
-  max-width: 900px;
-}
+.hero-inner{ padding: 60px 20px; max-width: 900px; }
 .hero h1{
   margin: 0 0 12px;
   font-size: clamp(28px, 6vw, 48px);
   font-weight: 800;
-  letter-spacing: .2px;
   text-shadow: 0 2px 8px rgba(0,0,0,.18);
 }
 .hero p{
@@ -112,19 +108,15 @@ section{
   text-shadow: 0 1px 4px rgba(0,0,0,.15);
 }
 
-/* ---------- STORY ---------- */
+/* STORY */
 .story{
   background-color: var(--cw-light);
   color: var(--text);
   text-align: center;
   padding: 30px 20px;
 }
-.story h2{
-  color: var(--cw-blue);
-  margin: 0 0 16px;
-  font-weight: 800;
-}
-.impact-content{ /* default: stacked on mobile; row on larger screens below */ }
+.story h2{ color: var(--cw-blue); margin: 0 0 16px; font-weight: 800; }
+.impact-content{ /* stacked on mobile; row on larger screens below */ }
 .impact-image{
   width: 100%;
   max-width: 340px;
@@ -134,7 +126,7 @@ section{
 }
 .impact-text p{ margin-top: 0; color: var(--muted); }
 
-/* ---------- DONATION CTA ---------- */
+/* DONATION CTA */
 .call-to-action{
   background-color: var(--cw-yellow);
   color: #222;
@@ -143,51 +135,24 @@ section{
 }
 .call-to-action h2{ margin-top: 0; font-weight: 800; }
 
-/* ---------- Responsive Media Queries ----------
-   These rules adjust the layout for different screen sizes.
-   1) <= 600px: phones
-   2) >= 601px: tablets/desktops
------------------------------------------------ */
-
-/* Phones (small screens): keep things stacked and readable */
+/* Responsive */
 @media (max-width: 600px){
   .hero{ min-height: 54vh; }
   .hero-inner{ padding: 36px 12px; }
   .hero h1{ font-size: 1.8rem; }
   .hero p{  font-size: 1rem; }
-
   .story, .call-to-action{ padding: 18px 12px; }
-
-  .impact-image{
-    width: 90%;
-    max-width: 260px;
-  }
+  .impact-image{ width: 90%; max-width: 260px; }
 }
-
-/* Tablets & Desktops: place story image and text side-by-side */
 @media (min-width: 601px){
   .impact-content{
-    display: flex;              /* side-by-side */
-    align-items: center;        /* vertical align */
-    justify-content: center;    /* center the group */
-    gap: 28px;                  /* space between image & text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
     text-align: left;
     max-width: 920px;
     margin: 0 auto;
   }
   .impact-image{ width: 320px; }
-}
-/* === Header with top-left logo === */
-.site-header{
-  display: flex;
-  align-items: center;
-  height: 60px;
-  padding: 0 16px;
-  background: #ffffff;                 /* simple, clean bar */
-  border-bottom: 1px solid #e8eef5;    /* subtle divider */
-}
-.brand img{
-  height: 34px;                        /* adjust as you like */
-  width: auto;
-  display: block;
 }
